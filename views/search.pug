@@ -1,4 +1,12 @@
 extends layouts/main.pug
-
+include mixin/videoBlock.pug
 block content 
-    p Search
+    .search__header
+        h3 Searching for: #{searchingBy}
+    .search__videos
+        each video in dbVideos
+            +videoBlock({
+                title:video.title,
+                views:video.views,
+                videoFile:video.videoFile
+            })
