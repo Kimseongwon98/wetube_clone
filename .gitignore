@@ -99,7 +99,8 @@ dist
 # FuseBox cache
 .fusebox/
 packge-lock.json
-uploads
+uploadatic
+sts
 
 # DynamoDB Local files
 .dynamodb/
