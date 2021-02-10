@@ -1,8 +1,68 @@
 extends layouts/main.pug
 include mixin/videoBlock.pug
 block content 
-    .videos
+    .home-videos
         each video in dbVideos
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
+            +videoBlock({
+                id: video.id,
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl
+            })
             +videoBlock({
                 id: video.id,
                 title:video.title,
