@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .video__player {
-    video {
+  .videoPlayer {
+    .notFull {
       width: 800px;
       height: 480px;
     }
