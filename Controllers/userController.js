@@ -2,6 +2,7 @@ import { JSONCookie } from "cookie-parser";
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User.js";
+import { ids } from "webpack";
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
@@ -47,8 +48,6 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
     const user = await User.findOne({ email });
     if (user) {
       user.githubId = id;
-      user.avatarUrl = avatarUrl;
-      user.name = name;
       user.save();
       return cb(null, user);
     }
@@ -72,8 +71,13 @@ export const kakaoLogin = passport.authenticate("kakao");
 
 export const kakaoLoginCallback = async (_, __, profile, cb) => {
   const {
-    _json: { id, profile_image: avatarUrl, username, email },
+    _json: {
+      id,
+      properties: { nickname, profile_image: avatarUrl },
+      kakao_account: { email },
+    },
   } = profile;
+  console.log(profile);
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -83,7 +87,7 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
     }
     const newUser = await User.create({
       email,
-      name: username,
+      name: nickname,
       kakaoId: id,
       avatarUrl,
     });
@@ -102,8 +106,16 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const getMe = (req, res) => {
-  res.render("userDetail", { pageTitle: "My Profile", user: req.user });
+export const getMe = async (req, res) => {
+  const {
+    user: { id },
+  } = req;
+  try {
+    const user = await User.findById(id).populate("videos");
+    res.render("userDetail", { pageTitle: "My Profile", user });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
 };
 
 export const userDetail = async (req, res) => {
@@ -111,14 +123,51 @@ export const userDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);
   }
 };
 
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
-export const changePassword = (req, res) =>
+
+export const postEditProfile = async (req, res) => {
+  const {
+    user: { _id: id },
+    body: { name, email },
+    file,
+  } = req;
+  try {
+    await User.findByIdAndUpdate(id, {
+      name,
+      email,
+      avatarUrl: file ? `/${file.path}` : req.user.avatarUrl,
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.render("editProfile", { pageTitle: "Edit Profile" });
+  }
+};
+
+export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
+
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword2 },
+  } = req;
+  try {
+    if (newPassword !== newPassword2) {
+      res.status(400);
+      res.redirect(`/users/${routes.changePassword}`);
+      return;
+    }
+    await req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.status(400);
+    res.redirect(`/users/${routes.editProfile}`);
+  }
+};

@@ -9,6 +9,10 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     dafault: Date.now(),
   },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const model = mongoose.model("Comment", CommentSchema);

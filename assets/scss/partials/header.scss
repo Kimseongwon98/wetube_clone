@@ -1,6 +1,9 @@
 .header {
   background-color: $red;
   margin-bottom: 50px;
+  a:visited {
+    color: white;
+  }
   .header__wrapper {
     padding: 5px 0px;
     width: 100%;
