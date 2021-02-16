@@ -35,10 +35,14 @@ export const getUpload = (req, res) =>
 export const postUpload = async (req, res) => {
   const {
     body: { title, description },
-    file: { path },
+    files: { videoFile, thumbnail },
   } = req;
+  const fileUrl = videoFile[0].path;
+  const thumbnailUrl = thumbnail[0].path;
+
   const newVideo = await Video.create({
-    fileUrl: path,
+    fileUrl,
+    thumbnailUrl,
     title,
     description,
     creator: req.user.id,
@@ -96,7 +100,7 @@ export const deleteVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user.id) {
+    if (video.creator.toString() !== req.user.id) {
       throw Error();
     } else {
       await Video.findOneAndRemove({ _id: id });

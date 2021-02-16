@@ -1,8 +1,6 @@
-import { JSONCookie } from "cookie-parser";
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User.js";
-import { ids } from "webpack";
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });

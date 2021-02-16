@@ -4,7 +4,8 @@ include mixin/videoPlayer
 block content 
     .video-detail__container
         +videoPlayer({
-            src:video.fileUrl
+            src:video.fileUrl,
+            thumbnail:video.thumbnailUrl
         })
         .video__info
             if loggedUser
@@ -18,7 +19,7 @@ block content
             else 
                 span.video__views #{video.views} views
             .video__author
-                |Uploaded by
+                |Uploaded by 
                 a(href=routes.userDetail(video.creator.id))=video.creator.name
         .video__comments
             if video.comments.length === 1

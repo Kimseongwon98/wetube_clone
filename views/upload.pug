@@ -5,7 +5,16 @@ block content
         form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
             .fileUpload
                 label(type="video") Video File
-                input(type="file", id="video", name="videoFile" required=true, accept="video/*")
+                input(type="file", id="video", name="videoFile", required=true, accept="video/*")
+            .fileUpload
+                .thumbnail__column
+                    .thumbnail__input
+                        label(type="image") 미리보기 이미지
+                        input(type="file", id="thumbnail", name="thumbnail", accept="image/*")
+                    .thumbnail
+                        image#jsThumbnail(style=" width: 100px; height: 55px;")
+                .thumbnail__info
+                    span ✅ 미리보기 이미지를 설정하지 않으면 자동으로 영상의 첫 프레임이 썸네일로 설정됩니다.
             input(type="text", placeholder="Title", name="title" required=true)
             textarea( placeholder="Description",name="description" required=true )
             input(type="submit", value="Upload Video")
