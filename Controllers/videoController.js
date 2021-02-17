@@ -26,8 +26,13 @@ export const search = async (req, res) => {
   res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
-export const videos = (req, res) =>
-  res.render("video", { pageTitle: "Videos" });
+export const getRecord = (req, res) => {
+  res.render("record", { pageTitle: "Record" });
+};
+
+export const postRecord = (req, res) => {
+  res.render("record", { pageTitle: "Record" });
+};
 
 export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });

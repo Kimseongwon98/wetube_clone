@@ -31,34 +31,4 @@
     max-width: 320px;
     width: 100%;
   }
-  .fileUpload {
-    label {
-      font-weight: 300;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .thumbnail__column {
-      display: flex;
-      justify-content: space-between;
-    }
-    .thumbnail {
-      background-color: black;
-      width: 100px;
-      height: 55px;
-      image {
-        width: 100px;
-        height: 55px;
-      }
-    }
-    .thumbnail__input {
-      width: 180px;
-    }
-    .thumbnail__info {
-      margin-top: 10px;
-      span {
-        line-height: 150%;
-      }
-    }
-  }
 }

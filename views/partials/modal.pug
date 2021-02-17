@@ -1,0 +1,16 @@
+.modal.hidden#modal
+    .modal__overlay
+    .modal__content 
+        .modal__header 
+            i.fas.fa-times#jsExitBtn 
+        .modal__main
+            a(href=`/videos${routes.record}`)
+                .modal__column 
+                    i.fas.fa-video 
+                    strong.modal__column-title 녹화하기
+                    p.modal__column-text 웹캠을 통해 새로운 영상을 녹화합니다
+            a(href=`/videos${routes.upload}`)
+                .modal__column 
+                    i.fas.fa-upload
+                    strong.modal__column-title 업로드하기
+                    p.modal__column-text 가지고 있는 비디오 파일을 업로드합니다.

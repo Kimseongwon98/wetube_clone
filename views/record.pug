@@ -1,11 +1,12 @@
 extends layouts/main.pug
 
-block content 
-    .form-container 
-        form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
-            .fileUpload
-                label(type="video") Video File
-                input(type="file", id="video", name="videoFile", required=true, accept="video/*")
+block content   
+    .record-body
+        .record-container#jsRecordContainer
+                video#jsVideoPreview
+                button#jsRecordBtn Start Recording
+                form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
+        .record-video__info 
             .fileUpload
                 .thumbnail__column
                     .thumbnail__input

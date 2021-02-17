@@ -54,3 +54,14 @@ input[type="submit"] {
 input[type="range"] {
   padding: 0;
 }
+
+label {
+  margin-bottom: 4px;
+}
+
+.scrollDisable {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden !important;
+  touch-action: none;
+}
