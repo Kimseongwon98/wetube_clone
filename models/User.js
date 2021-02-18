@@ -4,7 +4,10 @@ import passportLocalMongoose from "passport-local-mongoose";
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
-  avatarUrl: String,
+  avatarUrl: {
+    type: String,
+    default: "/uploads/avatars/09269213a59e75c7ece1c825dd999157",
+  },
   kakaoId: Number,
   githubId: Number,
   comments: [
@@ -17,6 +20,16 @@ const UserSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Video",
+    },
+  ],
+  subscribing: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  ],
+  like: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
     },
   ],
 });

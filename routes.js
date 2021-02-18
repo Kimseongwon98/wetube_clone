@@ -31,6 +31,17 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 //kakaotalk
 const KAKAO = "/auth/kakao";
 const KAKAO_CALLBACK = "/auth/kakao/callback";
+//
+
+// API
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+const LIKE = "/:id/like";
+const CANCEL_LIKE = "/:id/cancellike";
+const ADD_COMMENT = "/:id/comment";
+const SUBSCRIBE = "/:id/subscribe";
+const UNSUBSCRIBE = "/:id/unsubscribe";
+//
 
 const routes = {
   home: HOME,
@@ -77,6 +88,13 @@ const routes = {
   githubCallback: GITHUB_CALLBACK,
   kakaotalk: KAKAO,
   kakaotalkCallback: KAKAO_CALLBACK,
+  api: API,
+  registerView: REGISTER_VIEW,
+  addComment: ADD_COMMENT,
+  subscribe: SUBSCRIBE,
+  unsubscribe: UNSUBSCRIBE,
+  like: LIKE,
+  cancelLike: CANCEL_LIKE,
 };
 
 export default routes;

@@ -10,6 +10,8 @@ import MongoStore from "connect-mongo";
 import userRouter from "./routers/userRouter.js";
 import videoRouter from "./routers/videoRouter.js";
 import globalRouter from "./routers/globalRouter.js";
+import apiRouter from "./routers/apiRouter.js";
+
 import routes from "./routes.js";
 import { localsMiddleware } from "./middlewares.js";
 
@@ -47,5 +49,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

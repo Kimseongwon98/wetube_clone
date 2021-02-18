@@ -13,6 +13,15 @@ block content
                         button ✏️ Edit Profile
                     a(href=`/users${routes.changePassword}`)
                         button 🔒 Change Password 
+            else 
+                .user-profile__btns#subscribeContainer
+                    a
+                        if loggedUser.subscribing.includes(user.id)
+                            button#jsUnsubscribe(style="background-color:red;") Unsubscribe
+                        else
+                            button#jsSubscribe Subscribe
+                            
+                    
         .uploaded-videos
             each video in user.videos
                 +videoBlock({

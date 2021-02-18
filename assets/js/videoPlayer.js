@@ -8,8 +8,16 @@ const totalTime = document.getElementById("totalTime");
 const volumeBar = document.getElementById("jsVolumeBar");
 const rangeBar = document.getElementById("jsPlayBar");
 const controlBar = document.getElementById("jsController");
+const commentForm = document.getElementById("jsComment");
 
 let timer;
+
+const registerView = () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  fetch(`/api/${videoId}/view`, {
+    method: "POST",
+  });
+};
 
 function handleTransparent() {
   controlBar.style.opacity = "0";
@@ -121,6 +129,7 @@ function setTotalTime() {
 }
 
 function handleEnded() {
+  registerView();
   videoPlayer.currentTime = 0;
   handleMouse();
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -147,25 +156,35 @@ function handlePlayDrag(event) {
 
 function handlekeyDown(event) {
   const keyPress = event.keyCode;
-  console.log(keyPress);
-  event.preventDefault();
   handleMouse();
   if (keyPress === 32) {
+    event.preventDefault();
     handlePlayClick();
   } else if (keyPress === 37) {
+    event.preventDefault();
     videoPlayer.currentTime -= 5;
   } else if (keyPress === 39) {
+    event.preventDefault();
     videoPlayer.currentTime += 5;
   } else if (keyPress === 38) {
+    event.preventDefault();
     videoPlayer.volume += 0.1;
     volumeBar.value = videoPlayer.volume;
     handleVolumeIcon(volumeBar.value);
   } else if (keyPress === 40) {
+    event.preventDefault();
     videoPlayer.volume -= 0.1;
     volumeBar.value = videoPlayer.volume;
     handleVolumeIcon(volumeBar.value);
   }
 }
+
+const onComment = () => {
+  window.removeEventListener("keydown", handlekeyDown);
+};
+const offComment = () => {
+  window.addEventListener("keydown", handlekeyDown);
+};
 
 function init() {
   videoPlayer.volume = 0.5;
@@ -176,11 +195,14 @@ function init() {
   videoPlayer.addEventListener("timeupdate", getCurrentTime);
   videoPlayer.addEventListener("loadedmetadata", getRange);
   videoPlayer.addEventListener("ended", handleEnded);
+  videoPlayer.addEventListener("click", handlePlayClick);
   rangeBar.addEventListener("input", handlePlayDrag);
   window.addEventListener("keydown", handlekeyDown);
   volumeBar.addEventListener("input", handleVolumeDrag);
   videoContainer.addEventListener("mousemove", handleMouse);
   document.addEventListener("fullscreenchange", handleScreenChange);
+  commentForm.onfocus = onComment;
+  commentForm.onblur = offComment;
 }
 
 if (videoContainer) {

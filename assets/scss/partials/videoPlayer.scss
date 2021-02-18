@@ -45,6 +45,8 @@
 
     .videoPlayer__column:nth-child(2) {
       position: relative;
+      display: flex;
+      align-items: center;
     }
   }
 }
@@ -60,7 +62,7 @@
   flex-direction: column;
 }
 
-playBar {
+.playBar {
   width: 100%;
   position: absolute;
 }
@@ -70,12 +72,15 @@ playBar {
     opacity: 1;
   }
 }
+
 .volumeBar {
   opacity: 0;
   writing-mode: bt-lr; /* IE */
   -webkit-appearance: slider-vertical; /* WebKit */
   position: absolute;
-  right: -119px;
+  right: 2px;
   bottom: 30px;
-  width: 3px;
+  display: block;
+  width: 80px;
+  background: none;
 }

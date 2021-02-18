@@ -1,6 +1,9 @@
 import "../scss/styles.scss";
 
-import "./videoPlayer.js";
-import "./upload.js";
-import "./videoRecorder.js";
+import "./videoPlayer";
+import "./upload";
+import "./videoRecorder";
 import "./modal";
+import "./addComment";
+import "./subscribe";
+import "./like";

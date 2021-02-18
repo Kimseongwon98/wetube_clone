@@ -1,6 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
-import User from "../models/User.js";
+import User from "../models/User";
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
@@ -125,6 +125,38 @@ export const userDetail = async (req, res) => {
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);
+  }
+};
+
+export const subscribeProfile = (req, res) => {
+  const {
+    params: { id },
+    user,
+  } = req;
+  try {
+    user.subscribing.push(id);
+    user.save();
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
+export const unsubscribeProfile = (req, res) => {
+  const {
+    params: { id },
+    user,
+  } = req;
+  try {
+    const index = user.subscribing.indexOf(id);
+    user.subscribing.splice(index, 1);
+    user.save();
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+  } finally {
+    res.end();
   }
 };
 
