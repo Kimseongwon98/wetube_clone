@@ -4,6 +4,6 @@ import "./videoPlayer";
 import "./upload";
 import "./videoRecorder";
 import "./modal";
-import "./addComment";
+import "./comment";
 import "./subscribe";
 import "./like";

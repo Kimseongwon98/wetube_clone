@@ -31,7 +31,7 @@ block content
                                     button Edit video
                 .like
                     span#jsLikeContainer 
-                        if loggedUser.like.includes(video.id)
+                        if loggedUser && loggedUser.like.includes(video.id)
                             i.fas.fa-thumbs-up#jsUnlike
                         else
                             i.far.fa-thumbs-up#jsLike
@@ -51,10 +51,16 @@ block content
 
             form.add__comment#jsAddComment
                 input#jsComment(type="text", placeholder="Add a comment")
-
-            ul.video__comments-list#jsCommentList
-                each comment in video.comments.reverse()
-                    li
-                        span=comment.creator
-                        span=comment.text 
-        
+            .wrap
+                ul.video__comments-list#jsCommentList
+                    each comment in comments.reverse()
+                        li
+                            a(href=`/users/${comment.creator.id}`)
+                                img.commentAvatar(src=`${comment.creator.avatarUrl}`)
+                                .commentCreator
+                                    span=comment.creator.name
+                            a.comment__delete
+                                if loggedUser &&loggedUser.id === comment.creator.id
+                                    i.far.fa-trash-alt
+                            span.comment=comment.text
+            

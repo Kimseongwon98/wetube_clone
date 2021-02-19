@@ -667,6 +667,62 @@ label {
 .hidden {
   display: none; }
 
+.video__comments {
+  margin-top: 25px;
+  text-align: center; }
+  .video__comments .video__comment-number {
+    font-size: 18px; }
+  .video__comments .add__comment {
+    margin-top: 25px;
+    width: 100%; }
+    .video__comments .add__comment input {
+      width: 100%; }
+  .video__comments .wrap {
+    text-align: center; }
+    .video__comments .wrap .video__comments-list {
+      margin-top: 30px;
+      display: inline-block; }
+      .video__comments .wrap .video__comments-list li {
+        max-width: 480px;
+        width: 100%;
+        position: relative;
+        background-color: #3498db;
+        color: white;
+        padding: 30px;
+        -webkit-border-radius: 20px;
+           -moz-border-radius: 20px;
+                border-radius: 20px;
+        -webkit-border-bottom-left-radius: 0px;
+           -moz-border-radius-bottomleft: 0px;
+                border-bottom-left-radius: 0px; }
+        .video__comments .wrap .video__comments-list li:not(:last-child) {
+          margin-bottom: 35px; }
+        .video__comments .wrap .video__comments-list li .fa-thumbs-up {
+          cursor: pointer; }
+        .video__comments .wrap .video__comments-list li img {
+          height: 60px;
+          background-color: #ea232c;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 3;
+          left: -30px;
+          bottom: 30px; }
+        .video__comments .wrap .video__comments-list li .commentCreator {
+          position: absolute;
+          bottom: 78px;
+          left: 30px;
+          font-weight: 600;
+          color: black; }
+        .video__comments .wrap .video__comments-list li i {
+          position: absolute;
+          bottom: 20px;
+          z-index: 4;
+          right: 15px; }
+        .video__comments .wrap .video__comments-list li span {
+          word-break: break-all; }
+
 .home-videos {
   display: grid;
   grid-template-columns: repeat(6, minmax(150px, 1fr));
@@ -781,33 +837,6 @@ label {
     .video-detail__container .video__info .video__description {
       margin-top: 10px;
       font-size: 16px; }
-  .video-detail__container .video__comments {
-    margin-top: 25px;
-    text-align: center; }
-    .video-detail__container .video__comments .video__comment-number {
-      font-size: 18px; }
-    .video-detail__container .video__comments .add__comment {
-      margin-top: 25px;
-      width: 100%; }
-      .video-detail__container .video__comments .add__comment input {
-        width: 100%; }
-    .video-detail__container .video__comments .video__comments-list {
-      margin-top: 30px; }
-      .video-detail__container .video__comments .video__comments-list li {
-        background-color: #3498db;
-        color: white;
-        padding: 15px;
-        -webkit-border-radius: 20px;
-           -moz-border-radius: 20px;
-                border-radius: 20px;
-        -webkit-border-bottom-left-radius: 0px;
-           -moz-border-radius-bottomleft: 0px;
-                border-bottom-left-radius: 0px; }
-        .video-detail__container .video__comments .video__comments-list li:not(:last-child) {
-          margin-bottom: 15px; }
-
-.fa-thumbs-up {
-  cursor: pointer; }
 
 .user-profile {
   width: 100%;

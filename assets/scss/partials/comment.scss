@@ -1,0 +1,66 @@
+.video__comments {
+  margin-top: 25px;
+  text-align: center;
+  .video__comment-number {
+    font-size: 18px;
+  }
+  .add__comment {
+    margin-top: 25px;
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+  .wrap {
+    text-align: center;
+    .video__comments-list {
+      margin-top: 30px;
+      display: inline-block;
+      li {
+        max-width: 480px;
+        width: 100%;
+        position: relative;
+        background-color: #3498db;
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        border-bottom-left-radius: 0px;
+        &:not(:last-child) {
+          margin-bottom: 35px;
+        }
+        .fa-thumbs-up {
+          cursor: pointer;
+        }
+        img {
+          height: 60px;
+          background-color: #ea232c;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 3;
+          left: -30px;
+          bottom: 30px;
+        }
+        .commentCreator {
+          position: absolute;
+          bottom: 78px;
+          left: 30px;
+          font-weight: 600;
+          color: black;
+        }
+
+        i {
+          position: absolute;
+          bottom: 20px;
+          z-index: 4;
+          right: 15px;
+        }
+
+        span {
+          word-break: break-all;
+        }
+      }
+    }
+  }
+}
