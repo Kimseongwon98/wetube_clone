@@ -1,3 +1,6 @@
+.fa-thumbs-up {
+  cursor: pointer;
+}
 .video__comments {
   margin-top: 25px;
   text-align: center;
@@ -14,22 +17,21 @@
   .wrap {
     text-align: center;
     .video__comments-list {
-      margin-top: 30px;
+      margin-top: 20px;
       display: inline-block;
       li {
-        max-width: 480px;
-        width: 100%;
         position: relative;
-        background-color: #3498db;
-        color: white;
+        background-color: white;
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        align-items: center;
         padding: 30px;
-        border-radius: 20px;
-        border-bottom-left-radius: 0px;
-        &:not(:last-child) {
-          margin-bottom: 35px;
-        }
-        .fa-thumbs-up {
-          cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .commentId {
+          display: none;
         }
         img {
           height: 60px;
@@ -37,30 +39,29 @@
           -webkit-border-radius: 50%;
           -moz-border-radius: 50%;
           border-radius: 50%;
-          position: absolute;
-          z-index: 3;
-          left: -30px;
-          bottom: 30px;
         }
-        .commentCreator {
-          position: absolute;
-          bottom: 78px;
-          left: 30px;
+        strong {
           font-weight: 600;
           color: black;
         }
 
         i {
+          cursor: pointer;
           position: absolute;
           bottom: 20px;
-          z-index: 4;
           right: 15px;
         }
 
         span {
+          margin-left: 10px;
           word-break: break-all;
+          line-height: 130%;
         }
       }
     }
   }
+}
+
+.username {
+  display: none;
 }

@@ -4,19 +4,22 @@ header.header
             a(href=routes.home)
                 i.fab.fa-youtube
         .header__column
+            
             form(action=routes.search, method="get")
-                input(type="text", placeholder="Search by term...", name="term")
+                input(type="search", placeholder="Search by term...", name="term")
         .header__column
             ul
                 if !loggedUser
                     li
-                        a(href=routes.join) Join
-                    li
-                        a(href=routes.login) Log In
+                        a(href=routes.login) 
+                            i.fas.fa-sign-in-alt
                 else 
                     li
-                        a#openModal Upload
+                        a#openModal 
+                            i.far.fa-plus-square
                     li
-                        a(href=routes.me) Profile
+                        a(href=routes.logout)
+                            i.fas.fa-sign-out-alt
                     li
-                        a(href=routes.logout) Log Out
+                        a(href=routes.me) 
+                            image.headerAvatar#jsMyAvatar(src=loggedUser.avatarUrl)

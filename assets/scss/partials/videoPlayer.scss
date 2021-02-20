@@ -8,6 +8,14 @@
     margin: 0;
   }
 
+  .videoPlayer__icon {
+    position: absolute;
+    right: 48%;
+    top: 48%;
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
   .videoPlayer__volume {
     -webkit-appearance: slider-vertical;
     position: relative;

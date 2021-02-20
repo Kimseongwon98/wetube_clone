@@ -5,9 +5,9 @@ import {
   postChangePassword,
   postEditProfile,
   userDetail,
-} from "../Controllers/userController.js";
-import { onlyPrivate, uploadAvatar } from "../middlewares.js";
-import routes from "../routes.js";
+} from "../Controllers/userController";
+import { onlyPrivate, uploadAvatar } from "../middlewares";
+import routes from "../routes";
 
 const userRouter = express.Router();
 

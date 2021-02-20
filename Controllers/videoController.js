@@ -1,15 +1,79 @@
-import routes from "../routes.js";
-import Video from "../models/Video.js";
+import routes from "../routes";
+import Video from "../models/Video";
 import User from "../models/User";
-import Comment from "../models/Comment.js";
+import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
+  const { user } = req;
   try {
     const dbVideos = await Video.find({}).sort({ _id: -1 });
-    res.render("home", { pageTitle: "Home", dbVideos });
+    if (user) {
+      const me = await User.findById(user).populate("subscribing");
+      res.render("home", { pageTitle: "Home", dbVideos, me });
+    } else {
+      res.render("home", { pageTitle: "Home", dbVideos });
+    }
   } catch (error) {
     console.log(error);
     res.render("home", { pageTitle: "Home", dbVideos: [] });
+  }
+};
+
+export const homeHot = async (req, res) => {
+  const { user } = req;
+  try {
+    const dbVideos = await Video.find({}).sort({ views: -1 });
+    if (user) {
+      const me = await User.findById(user).populate("subscribing");
+      res.render("homeHot", { pageTitle: "Home", dbVideos, me });
+    } else {
+      res.render("homeHot", { pageTitle: "Home", dbVideos });
+    }
+  } catch (error) {
+    console.log(error);
+    res.render("homeHot", { pageTitle: "Home", dbVideos: [] });
+  }
+};
+
+export const homeLiked = async (req, res) => {
+  const { user } = req;
+  try {
+    const dbVideos = [];
+    let i = 0;
+    const me = await User.findById(user).populate("subscribing");
+    me.like.forEach(async (channel) => {
+      const video = await Video.findById(channel);
+      dbVideos.push(video);
+      i += 1;
+      if (me.like.length === i) {
+        res.render("homeLiked", { pageTitle: "Home", dbVideos, me });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.render("homeLiked", { pageTitle: "Home", dbVideos: [] });
+  }
+};
+
+export const homeSubscribed = async (req, res) => {
+  const { user } = req;
+  try {
+    const me = await User.findById(user).populate([
+      {
+        path: "subscribing",
+        model: "User",
+        populate: {
+          path: "videos",
+          model: "Video",
+        },
+      },
+    ]);
+    const dbVideos = me.subscribing;
+
+    res.render("homeSubscribed", { pageTitle: "Home", dbVideos, me });
+  } catch (error) {
+    console.log(error);
+    res.render("homeSubscribed", { pageTitle: "Home", dbVideos: [] });
   }
 };
 
@@ -156,10 +220,30 @@ export const postAddComment = async (req, res) => {
     const newComment = await Comment.create({
       text: comment,
       creator: user.id,
+      video: id,
     });
     video.comments.push(newComment.id);
     video.save();
   } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
+export const postDelComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { videoId },
+  } = req;
+  try {
+    await Comment.findByIdAndRemove({ _id: id });
+    const video = await Video.findById(videoId);
+    const index = video.comments.indexOf(id);
+    video.comments.splice(index, 1);
+    video.save();
+  } catch (error) {
+    console.log(error);
     res.status(400);
   } finally {
     res.end();

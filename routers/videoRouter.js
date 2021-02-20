@@ -8,9 +8,9 @@ import {
   postRecord,
   postUpload,
   videoDetail,
-} from "../Controllers/videoController.js";
-import { onlyPrivate, uploadVideo } from "../middlewares.js";
-import routes from "../routes.js";
+} from "../Controllers/videoController";
+import { onlyPrivate, uploadVideo } from "../middlewares";
+import routes from "../routes";
 
 const videoRouter = express.Router();
 

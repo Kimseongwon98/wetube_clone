@@ -25,6 +25,7 @@ const UserSchema = new mongoose.Schema({
   subscribing: [
     {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
   like: [

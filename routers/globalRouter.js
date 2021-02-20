@@ -11,14 +11,23 @@ import {
   postJoin,
   postKakaoLogin,
   postLogin,
-} from "../Controllers/userController.js";
-import { home, search } from "../Controllers/videoController.js";
-import { onlyPrivate, onlyPublic } from "../middlewares.js";
-import routes from "../routes.js";
+} from "../Controllers/userController";
+import {
+  home,
+  homeHot,
+  homeLiked,
+  homeSubscribed,
+  search,
+} from "../Controllers/videoController";
+import { onlyPrivate, onlyPublic } from "../middlewares";
+import routes from "../routes";
 
 const globalRouter = express.Router();
 
 globalRouter.get(routes.home, home);
+globalRouter.get(routes.liked, homeLiked);
+globalRouter.get(routes.subscribed, homeSubscribed);
+globalRouter.get(routes.hot, homeHot);
 
 globalRouter.get(routes.join, onlyPublic, getJoin);
 globalRouter.post(routes.join, onlyPublic, postJoin, postLogin);

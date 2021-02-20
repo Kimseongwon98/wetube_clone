@@ -3,14 +3,14 @@ include mixin/videoBlock.pug
 block content 
     .home-wrapper
         .menu
+            a(href=routes.home)
+                .main 
+                    i.fas.fa-home
+                    span 홈
             
-            .main.selected
-                i.fas.fa-home
-                span 홈
-            a(href=routes.hot)
-                .pop 
-                    i.fas.fa-fire
-                    span 인기 동영상
+            .pop.selected
+                i.fas.fa-fire
+                span 인기 동영상
             if loggedUser
                 a(href=routes.liked)
                     .likeVideo 

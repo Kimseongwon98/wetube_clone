@@ -9,6 +9,7 @@ const volumeBar = document.getElementById("jsVolumeBar");
 const rangeBar = document.getElementById("jsPlayBar");
 const controlBar = document.getElementById("jsController");
 const commentForm = document.getElementById("jsComment");
+const videoIcon = document.getElementById("jsvideoIcon");
 
 let timer;
 
@@ -31,13 +32,21 @@ function handleMouse() {
   timer = setTimeout(handleTransparent, 5000);
 }
 
+const handleIcon = () => {
+  videoIcon.innerHTML = "";
+};
+
 function handlePlayClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    videoIcon.innerHTML = '<i class="fas fa-play"></i>';
+    setTimeout(handleIcon, 3000);
   } else {
     videoPlayer.pause();
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    videoIcon.innerHTML = '<i class="fas fa-pause"></i>';
+    setTimeout(handleIcon, 3000);
   }
 }
 
@@ -163,18 +172,32 @@ function handlekeyDown(event) {
   } else if (keyPress === 37) {
     event.preventDefault();
     videoPlayer.currentTime -= 5;
+    videoIcon.innerHTML = '<i class="fas fa-angle-double-left"></i>';
+    setTimeout(handleIcon, 3000);
   } else if (keyPress === 39) {
     event.preventDefault();
     videoPlayer.currentTime += 5;
+    videoIcon.innerHTML = '<i class="fas fa-angle-double-right"></i>';
+    setTimeout(handleIcon, 3000);
   } else if (keyPress === 38) {
     event.preventDefault();
     videoPlayer.volume += 0.1;
+    volumeBar.style.opacity = 1;
+
     volumeBar.value = videoPlayer.volume;
+    setTimeout(() => {
+      volumeBar.style = "";
+    }, 3000);
     handleVolumeIcon(volumeBar.value);
   } else if (keyPress === 40) {
     event.preventDefault();
     videoPlayer.volume -= 0.1;
+    volumeBar.style.opacity = 1;
+
     volumeBar.value = videoPlayer.volume;
+    setTimeout(() => {
+      volumeBar.style = "";
+    }, 3000);
     handleVolumeIcon(volumeBar.value);
   }
 }

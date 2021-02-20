@@ -1,5 +1,8 @@
 // Global
 const HOME = "/";
+const HOT = "/hot";
+const LIKED = "/liked";
+const SUBSCRIBED = "/subscribed";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -39,12 +42,16 @@ const REGISTER_VIEW = "/:id/view";
 const LIKE = "/:id/like";
 const CANCEL_LIKE = "/:id/cancellike";
 const ADD_COMMENT = "/:id/comment";
+const DEL_COMMENT = "/:id/delcomment";
 const SUBSCRIBE = "/:id/subscribe";
 const UNSUBSCRIBE = "/:id/unsubscribe";
 //
 
 const routes = {
   home: HOME,
+  hot: HOT,
+  liked: LIKED,
+  subscribed: SUBSCRIBED,
   join: JOIN,
   login: LOGIN,
   logout: LOGOUT,
@@ -91,6 +98,7 @@ const routes = {
   api: API,
   registerView: REGISTER_VIEW,
   addComment: ADD_COMMENT,
+  delComment: DEL_COMMENT,
   subscribe: SUBSCRIBE,
   unsubscribe: UNSUBSCRIBE,
   like: LIKE,

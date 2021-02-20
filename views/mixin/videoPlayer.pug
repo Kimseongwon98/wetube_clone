@@ -4,6 +4,8 @@ mixin videoPlayer(video = {})
             video.videoBlock__thumbnail(src=`/${video.src}`, poster=`/${video.thumbnail}`)
         else 
             video.videoBlock__thumbnail(src=`/${video.src}`)
+        span.videoPlayer__icon#jsvideoIcon
+            
         .video__bar
             
             .videoPlayer__controls#jsController

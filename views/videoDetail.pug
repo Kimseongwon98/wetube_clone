@@ -55,12 +55,16 @@ block content
                 ul.video__comments-list#jsCommentList
                     each comment in comments.reverse()
                         li
+                            span.commentId=comment.id
                             a(href=`/users/${comment.creator.id}`)
                                 img.commentAvatar(src=`${comment.creator.avatarUrl}`)
                                 .commentCreator
-                                    span=comment.creator.name
-                            a.comment__delete
+                                    strong=comment.creator.name
+                            span.comment__delete#jsCommentDelBtn
                                 if loggedUser &&loggedUser.id === comment.creator.id
                                     i.far.fa-trash-alt
                             span.comment=comment.text
+            
+            if loggedUser 
+                span.username#jsUserName=loggedUser.name
             

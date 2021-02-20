@@ -12,7 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &:not(:last-child) {
+    margin-top: 5px;
+    &:last-child {
       margin-bottom: 15px;
     }
     span {
