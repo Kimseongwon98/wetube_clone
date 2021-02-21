@@ -37,6 +37,11 @@ block content
                             i.far.fa-thumbs-up#jsLike
         
                     span#jsLikeCount #{video.like}
+            if video.tags
+                .tags 
+                    each tag in video.tags
+                        a(href=`${routes.search}?tag=${tag}`)
+                            button=`# ${tag}`
             p.video__description=video.description
             
         .video__comments

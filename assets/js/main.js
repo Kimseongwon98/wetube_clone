@@ -7,3 +7,5 @@ import "./modal";
 import "./comment";
 import "./subscribe";
 import "./like";
+import "./search";
+import "./videoBlock";

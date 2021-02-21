@@ -29,6 +29,11 @@ const VideoSchema = new mongoose.Schema({
       ref: "Comment",
     },
   ],
+  tags: [
+    {
+      type: String,
+    },
+  ],
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

@@ -5,12 +5,12 @@
     color: white;
   }
   .header__wrapper {
-    padding: 5px 5px;
+    padding: 15px 15px;
     width: 100%;
     margin: 0 auto;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 60px 1fr 140px;
     align-items: center;
     .header__column {
       i {
@@ -33,31 +33,36 @@
           margin-right: 15px;
         }
       }
-
-      form {
+    }
+    .header__column:nth-child(2) {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      justify-content: center;
+      input,
+      select {
+        border: none;
+        height: 40px;
+      }
+      input {
         width: 100%;
-
-        input {
-          padding: 7px 10px;
-          width: 100%;
-          border-radius: 5px;
-          font-size: 14px;
-          color: $black;
-          font-weight: 600;
-          max-width: none;
-          &::placeholder {
-            font-weight: 300;
-            color: rgba(0, 0, 0, 0.7);
-          }
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      select {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &:focus {
+          outline: none;
         }
       }
-      .headerAvatar {
-        height: 30px;
-        width: 30px;
-        border-radius: 50%;
-        background-color: white;
-        border: 1px solid white;
-      }
+    }
+
+    .headerAvatar {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid white;
     }
   }
 }

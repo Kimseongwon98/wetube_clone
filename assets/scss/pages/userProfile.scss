@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  border-bottom: 1px solid black;
   .user-profile__header {
     display: flex;
     flex-direction: column;
@@ -11,6 +12,22 @@
     .profile__username {
       font-size: 18px;
       margin-top: 15px;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+    .socialProfile {
+      display: flex;
+      align-items: center;
+      margin: 8px;
+      h4 {
+        font-weight: 600;
+      }
+      .socialIcon {
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        margin-right: 10px;
+      }
     }
   }
   .user-profile__btns {
@@ -19,6 +36,22 @@
     align-items: center;
     a {
       margin-bottom: 20px;
+    }
+  }
+}
+
+.uploaded-videos {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  .videoBlock {
+    margin: 20px;
+    a,
+    a:visited {
+      color: black;
+    }
+    h4 {
+      font-weight: 600;
     }
   }
 }

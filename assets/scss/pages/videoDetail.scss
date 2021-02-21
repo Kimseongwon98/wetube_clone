@@ -47,6 +47,21 @@
         margin-bottom: 0;
       }
     }
+    .tags {
+      margin-top: 15px;
+      button {
+        border: 0.5px solid white;
+        padding: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 8px;
+        height: 40px;
+        width: auto;
+        margin: 0px 5px;
+        margin-bottom: 20px;
+        background-color: black;
+      }
+    }
     .video__title,
     .video__views,
     .video__description {

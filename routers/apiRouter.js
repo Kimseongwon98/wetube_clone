@@ -11,15 +11,16 @@ import {
   registerView,
 } from "../Controllers/videoController";
 import routes from "../routes";
+import { onlyPrivate } from "../middlewares";
 
 const apiRouter = express.Router();
 
 apiRouter.post(routes.registerView, registerView);
-apiRouter.post(routes.addComment, postAddComment);
-apiRouter.post(routes.delComment, postDelComment);
-apiRouter.post(routes.subscribe, subscribeProfile);
-apiRouter.post(routes.unsubscribe, unsubscribeProfile);
-apiRouter.post(routes.like, likeVideo);
-apiRouter.post(routes.cancelLike, cancelLike);
+apiRouter.post(routes.addComment, onlyPrivate, postAddComment);
+apiRouter.post(routes.delComment, onlyPrivate, postDelComment);
+apiRouter.post(routes.subscribe, onlyPrivate, subscribeProfile);
+apiRouter.post(routes.unsubscribe, onlyPrivate, unsubscribeProfile);
+apiRouter.post(routes.like, onlyPrivate, likeVideo);
+apiRouter.post(routes.cancelLike, onlyPrivate, cancelLike);
 
 export default apiRouter;

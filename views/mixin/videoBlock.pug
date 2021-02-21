@@ -1,5 +1,5 @@
 mixin videoBlock(video = {})
-    .videoBlock
+    .videoBlock#jsVideoBlock
         a(href=routes.videoDetail(video.id))
             if video.thumbnail
                 video.videoBlock__thumbnail(src=`/${video.videoFile}`, controls=false, poster=`/${video.thumbnail}`)

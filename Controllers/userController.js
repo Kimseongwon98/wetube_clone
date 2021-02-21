@@ -43,7 +43,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
     _json: { id, avatar_url: avatarUrl, name, email },
   } = profile;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ $or: [{ email }, { githubId: id }] });
     if (user) {
       user.githubId = id;
       user.save();
@@ -75,9 +75,8 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
       kakao_account: { email },
     },
   } = profile;
-  console.log(profile);
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ $or: [{ email }, { kakaoId: id }] });
     if (user) {
       user.kakaoId = id;
       user.save();

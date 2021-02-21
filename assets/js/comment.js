@@ -21,6 +21,7 @@ const addComment = (comment) => {
   span.innerHTML = comment;
   avatar.src = myAvatar.src;
   name.innerHTML = myName.innerHTML;
+
   a.appendChild(avatar);
   div.appendChild(name);
   a.appendChild(div);

@@ -41,6 +41,10 @@ export const homeLiked = async (req, res) => {
     const dbVideos = [];
     let i = 0;
     const me = await User.findById(user).populate("subscribing");
+    if (me.like.length === 0) {
+      res.render("homeLiked", { pageTitle: "Home", dbVideos: [], me });
+      return;
+    }
     me.like.forEach(async (channel) => {
       const video = await Video.findById(channel);
       dbVideos.push(video);
@@ -51,7 +55,7 @@ export const homeLiked = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.render("homeLiked", { pageTitle: "Home", dbVideos: [] });
+    res.render("home", { pageTitle: "Home", dbVideos: [] });
   }
 };
 
@@ -73,23 +77,41 @@ export const homeSubscribed = async (req, res) => {
     res.render("homeSubscribed", { pageTitle: "Home", dbVideos, me });
   } catch (error) {
     console.log(error);
-    res.render("homeSubscribed", { pageTitle: "Home", dbVideos: [] });
+    res.render("home", { pageTitle: "Home", dbVideos: [] });
   }
 };
 
 export const search = async (req, res) => {
   const {
-    query: { term: searchingBy },
+    query: { term: searchingByTerm, tag: searchingByTag },
   } = req;
   let videos = [];
   try {
-    videos = await Video.find({
-      title: { $regex: searchingBy, $options: "i" },
-    });
+    if (searchingByTerm) {
+      videos = await Video.find({
+        $or: [
+          { title: { $regex: searchingByTerm, $options: "i" } },
+          { description: { $regex: searchingByTerm, $options: "i" } },
+        ],
+      });
+      res.render("search", {
+        pageTitle: "Search",
+        searchingBy: searchingByTerm,
+        videos,
+      });
+    } else {
+      videos = await Video.find({
+        tags: { $in: searchingByTag },
+      });
+      res.render("search", {
+        pageTitle: "Search",
+        searchingBy: `#${searchingByTag}`,
+        videos,
+      });
+    }
   } catch (error) {
     console.log(error);
   }
-  res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
 export const getRecord = (req, res) => {
@@ -105,22 +127,36 @@ export const getUpload = (req, res) =>
 
 export const postUpload = async (req, res) => {
   const {
-    body: { title, description },
+    body: { title, description, tags },
     files: { videoFile, thumbnail },
   } = req;
+  console.log(tags);
   const fileUrl = videoFile[0].path;
-  const thumbnailUrl = thumbnail[0].path;
-
-  const newVideo = await Video.create({
-    fileUrl,
-    thumbnailUrl,
-    title,
-    description,
-    creator: req.user.id,
-  });
-  req.user.videos.push(newVideo.id);
-  req.user.save();
-  res.redirect(routes.videoDetail(newVideo.id));
+  if (thumbnail) {
+    const thumbnailUrl = thumbnail[0].path;
+    const newVideo = await Video.create({
+      fileUrl,
+      thumbnailUrl,
+      title,
+      description,
+      tags: tags.split(","),
+      creator: req.user.id,
+    });
+    req.user.videos.push(newVideo.id);
+    req.user.save();
+    res.redirect(routes.videoDetail(newVideo.id));
+  } else {
+    const newVideo = await Video.create({
+      fileUrl,
+      title,
+      description,
+      tags: tags.split(","),
+      creator: req.user.id,
+    });
+    req.user.videos.push(newVideo.id);
+    req.user.save();
+    res.redirect(routes.videoDetail(newVideo.id));
+  }
 };
 
 export const videoDetail = async (req, res) => {
@@ -166,10 +202,13 @@ export const getEditVideo = async (req, res) => {
 export const postEditVideo = async (req, res) => {
   const {
     params: { id },
-    body: { title, description },
+    body: { title, description, tags },
   } = req;
   try {
-    await Video.findOneAndUpdate({ _id: id }, { title, description });
+    await Video.findOneAndUpdate(
+      { _id: id },
+      { title, description, tags: tags.split(",") }
+    );
     res.redirect(routes.videoDetail(id));
   } catch (error) {
     res.redirect(routes.home);
