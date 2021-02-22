@@ -29,7 +29,7 @@ passport.use(
       clientID: process.env.KAKAO_ID,
       clientSecret: "",
       callbackURL: process.env.PRODUCTION
-        ? `https://salty-reef-46396.herokuapp.com/${rroutes.kakaotalkCallback}`
+        ? `https://salty-reef-46396.herokuapp.com/${routes.kakaotalkCallback}`
         : `http://localhost:4000${routes.kakaotalkCallback}`,
     },
     kakaoLoginCallback
