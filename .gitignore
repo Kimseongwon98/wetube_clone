@@ -102,6 +102,7 @@ packge-lock.json
 uploadatic
 sts
 uploads
+build
 
 # DynamoDB Local files
 .dynamodb/

@@ -1,0 +1,16 @@
+extends layouts/main.pug
+include mixin/videoBlock.pug
+block content 
+    .search__header
+        h3 "#{searchingBy}"에 대한 검색 결과: #{videos.length}
+    .search__videos
+        if videos.length === 0
+            h5 조건에 부합하는 영상이 없습니다
+        each video in videos
+            +videoBlock({
+                title:video.title,
+                views:video.views,
+                videoFile:video.fileUrl,
+                id:video.id,
+                thumbnail:video.thumbnailUrl
+            })
