@@ -15,7 +15,9 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:4000${routes.githubCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://salty-reef-46396.herokuapp.com/${routes.githubCallback}`
+        : `http://localhost:4000${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -26,7 +28,9 @@ passport.use(
     {
       clientID: process.env.KAKAO_ID,
       clientSecret: "",
-      callbackURL: `http://localhost:4000${routes.kakaotalkCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://salty-reef-46396.herokuapp.com/${rroutes.kakaotalkCallback}`
+        : `http://localhost:4000${routes.kakaotalkCallback}`,
     },
     kakaoLoginCallback
   )
