@@ -6,7 +6,8 @@ const UserSchema = new mongoose.Schema({
   email: String,
   avatarUrl: {
     type: String,
-    default: "/uploads/avatars/09269213a59e75c7ece1c825dd999157",
+    default:
+      "https://we-t-ube.s3.amazonaws.com/avatar/27d734b8299f69d35322bdbaf8e08719",
   },
   kakaoId: Number,
   githubId: Number,

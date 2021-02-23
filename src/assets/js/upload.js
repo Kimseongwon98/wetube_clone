@@ -15,6 +15,6 @@ function init() {
   thumbnailInput.onchange = handleInput;
 }
 
-if (formContainer) {
+if (thumbnailInput) {
   init();
 }

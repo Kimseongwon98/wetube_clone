@@ -27,21 +27,13 @@
     &:not(.socialModalContent) {
       width: 80%;
     }
-    .socialModalContent {
-      width: 50%;
-    }
   }
   .modal__header:not(.socialModalHeader) {
     text-align: right;
     font-size: 18px;
     cursor: pointer;
   }
-  .socialModalHeader {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
+
   .modal__main {
     display: flex;
     justify-content: space-around;

@@ -616,17 +616,10 @@ label {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
     .modal .modal__content:not(.socialModalContent) {
       width: 80%; }
-    .modal .modal__content .socialModalContent {
-      width: 50%; }
   .modal .modal__header:not(.socialModalHeader) {
     text-align: right;
     font-size: 18px;
     cursor: pointer; }
-  .modal .socialModalHeader {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 5px; }
   .modal .modal__main {
     display: -webkit-box;
     display: -webkit-flex;
@@ -674,6 +667,36 @@ label {
 
 .hidden {
   display: none; }
+
+.socialModalContent {
+  width: 50%; }
+  .socialModalContent strong {
+    font-weight: 600; }
+  .socialModalContent .socialModalHeader {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px; }
+  .socialModalContent .modal__main {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .socialModalContent .modal__main .form-container div {
+      margin-bottom: 10px; }
 
 .fa-thumbs-up {
   cursor: pointer; }
@@ -741,6 +764,93 @@ label {
 
 .username {
   display: none; }
+
+@-webkit-keyframes flashAnimation {
+  0% {
+    -webkit-transform: translateY(-90px);
+            transform: translateY(-90px); }
+  5% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  95% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  100% {
+    -webkit-transform: translateY(-90px);
+            transform: translateY(-90px); } }
+
+@-moz-keyframes flashAnimation {
+  0% {
+    -moz-transform: translateY(-90px);
+         transform: translateY(-90px); }
+  5% {
+    -moz-transform: translateY(0);
+         transform: translateY(0); }
+  95% {
+    -moz-transform: translateY(0);
+         transform: translateY(0); }
+  100% {
+    -moz-transform: translateY(-90px);
+         transform: translateY(-90px); } }
+
+@-o-keyframes flashAnimation {
+  0% {
+    -o-transform: translateY(-90px);
+       transform: translateY(-90px); }
+  5% {
+    -o-transform: translateY(0);
+       transform: translateY(0); }
+  95% {
+    -o-transform: translateY(0);
+       transform: translateY(0); }
+  100% {
+    -o-transform: translateY(-90px);
+       transform: translateY(-90px); } }
+
+@keyframes flashAnimation {
+  0% {
+    -webkit-transform: translateY(-90px);
+       -moz-transform: translateY(-90px);
+         -o-transform: translateY(-90px);
+            transform: translateY(-90px); }
+  5% {
+    -webkit-transform: translateY(0);
+       -moz-transform: translateY(0);
+         -o-transform: translateY(0);
+            transform: translateY(0); }
+  95% {
+    -webkit-transform: translateY(0);
+       -moz-transform: translateY(0);
+         -o-transform: translateY(0);
+            transform: translateY(0); }
+  100% {
+    -webkit-transform: translateY(-90px);
+       -moz-transform: translateY(-90px);
+         -o-transform: translateY(-90px);
+            transform: translateY(-90px); } }
+
+.flash-message__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  z-index: 9;
+  -webkit-animation: flashAnimation 3s ease-in-out forwards;
+     -moz-animation: flashAnimation 3s ease-in-out forwards;
+       -o-animation: flashAnimation 3s ease-in-out forwards;
+          animation: flashAnimation 3s ease-in-out forwards; }
+  .flash-message__container.error {
+    background-color: #c0392b; }
+  .flash-message__container.success {
+    background-color: #3498db; }
+  .flash-message__container.info {
+    background-color: #f1c40f; }
+  .flash-message__container .flash-message__text {
+    font-size: 20px;
+    color: white;
+    font-weight: 600; }
 
 .home-wrapper {
   height: 100vh;

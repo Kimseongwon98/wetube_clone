@@ -3585,7 +3585,7 @@ eval("const subcribeBtn = document.getElementById(\"jsSubscribe\");\r\nconst uns
   \*****************************/
 /***/ (() => {
 
-eval("const formContainer = document.querySelector(\".form-container\");\r\nconst thumbnailInput = document.getElementById(\"thumbnail\");\r\nconst img = document.getElementById(\"jsThumbnail\");\r\n\r\nfunction handleInput(event) {\r\n  console.log(event);\r\n  const reader = new FileReader();\r\n  reader.onload = (e) => {\r\n    img.setAttribute(\"src\", e.target.result);\r\n  };\r\n  reader.readAsDataURL(event.target.files[0]);\r\n}\r\n\r\nfunction init() {\r\n  thumbnailInput.onchange = handleInput;\r\n}\r\n\r\nif (formContainer) {\r\n  init();\r\n}\r\n\n\n//# sourceURL=webpack:///./assets/js/upload.js?");
+eval("const formContainer = document.querySelector(\".form-container\");\r\nconst thumbnailInput = document.getElementById(\"thumbnail\");\r\nconst img = document.getElementById(\"jsThumbnail\");\r\n\r\nfunction handleInput(event) {\r\n  console.log(event);\r\n  const reader = new FileReader();\r\n  reader.onload = (e) => {\r\n    img.setAttribute(\"src\", e.target.result);\r\n  };\r\n  reader.readAsDataURL(event.target.files[0]);\r\n}\r\n\r\nfunction init() {\r\n  thumbnailInput.onchange = handleInput;\r\n}\r\n\r\nif (thumbnailInput) {\r\n  init();\r\n}\r\n\n\n//# sourceURL=webpack:///./assets/js/upload.js?");
 
 /***/ }),
 

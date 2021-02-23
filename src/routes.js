@@ -15,6 +15,7 @@ const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 const ME = "/me";
+const GET_MORE_INFO = "/getmore";
 //
 
 // Videos
@@ -57,6 +58,7 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
+  getMore: GET_MORE_INFO,
   me: ME,
   userDetail: (id) => {
     if (id) {

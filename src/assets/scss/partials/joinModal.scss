@@ -1,0 +1,22 @@
+.socialModalContent {
+  width: 50%;
+  strong {
+    font-weight: 600;
+  }
+  .socialModalHeader {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .modal__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .form-container {
+      div {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

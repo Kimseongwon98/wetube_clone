@@ -50,6 +50,7 @@ export const onlyPrivate = (req, res, next) => {
   if (req.user) {
     next();
   } else {
+    req.flash("error", "로그인이 필요합니다");
     res.redirect(routes.home);
   }
 };
