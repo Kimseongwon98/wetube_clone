@@ -2,7 +2,7 @@ mixin videoBlock(video = {})
     .videoBlock#jsVideoBlock
         a(href=routes.videoDetail(video.id))
             if video.thumbnail
-                video.videoBlock__thumbnail(src=video.videoFile, controls=false, poster=`/${video.thumbnail}`)
+                video.videoBlock__thumbnail(src=video.videoFile, controls=false, poster=video.thumbnail)
             else 
                 video.videoBlock__thumbnail(src=video.videoFile, controls=false)
             h4.videoBlock__title=video.title
