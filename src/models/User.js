@@ -34,6 +34,7 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
     },
   ],
+  needMoreInfo: Number,
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });

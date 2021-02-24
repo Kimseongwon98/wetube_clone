@@ -60,6 +60,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
       name,
       githubId: id,
       avatarUrl,
+      needMoreInfo: 1,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -68,7 +69,11 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
 };
 
 export const postGithubLogin = (req, res) => {
-  res.redirect(routes.home);
+  if (req.user.needMoreInfo) {
+    res.redirect(`/users${routes.getMore}`);
+  } else {
+    res.redirect(routes.home);
+  }
 };
 
 export const kakaoLogin = passport.authenticate("kakao", {
@@ -96,6 +101,7 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
       name: nickname,
       kakaoId: id,
       avatarUrl,
+      needMoreInfo: 1,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -104,13 +110,25 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
 };
 
 export const postKakaoLogin = (req, res) => {
-  res.redirect(routes.home);
+  if (req.user.needMoreInfo) {
+    res.redirect(`/users${routes.getMore}`);
+  } else {
+    res.redirect(routes.home);
+  }
 };
 
-export const postMoreInfo = async (req, res) => {
+export const getMoreInfo = (req, res) => {
+  if (req.user.needMoreInfo) {
+    res.render("getMore", { pageTitle: "Get More Info" });
+  } else {
+    res.redirect(routes.home);
+  }
+};
+
+export const postMoreInfo = async (req, res, next) => {
   const {
-    user: { id },
-    body: { password, password2, email },
+    user: { id, email, name, githubId, kakaoId, avatarUrl },
+    body: { password, password2, email: formEmail },
   } = req;
   if (password !== password2) {
     req.flash("error", "Passwords don't match");
@@ -119,16 +137,29 @@ export const postMoreInfo = async (req, res) => {
     return;
   }
   try {
-    if (email) {
-      await User.findByIdAndUpdate(id, {
-        email,
+    await User.findByIdAndDelete(id);
+    if (formEmail) {
+      const user = await User({
+        name,
+        email: formEmail,
+        githubId,
+        kakaoId,
+        avatarUrl,
       });
-
-      await req.user.setPassword(password);
-      res.redirect(routes.home);
+      await User.register(user, password);
+    } else {
+      const user = await User({
+        name,
+        email,
+        githubId,
+        kakaoId,
+        avatarUrl,
+      });
+      await User.register(user, password);
     }
-    req.flash("success", "Profile updated");
+    next();
   } catch (error) {
+    console.log(error);
     req.flash("error", "Can't update profile");
     res.redirect(routes.home);
   }
@@ -237,6 +268,7 @@ export const postChangePassword = async (req, res) => {
     await req.user.changePassword(oldPassword, newPassword);
     res.redirect(routes.me);
   } catch (error) {
+    console.log(error);
     req.flash("error", "Can't change password");
     res.status(400);
     res.redirect(`/users/${routes.editProfile}`);
