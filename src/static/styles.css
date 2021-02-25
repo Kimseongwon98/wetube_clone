@@ -432,7 +432,8 @@ label {
 .videoPlayer {
   position: relative; }
   .videoPlayer video {
-    width: 100%;
+    width: 1280px;
+    height: 720px;
     max-width: 100%;
     padding: 0;
     margin: 0; }

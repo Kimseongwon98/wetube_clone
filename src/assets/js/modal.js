@@ -19,4 +19,6 @@ const init = () => {
   exitBtn.addEventListener("click", exitModal);
 };
 
-init();
+if (openModal) {
+  init();
+}

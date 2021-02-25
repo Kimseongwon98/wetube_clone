@@ -3555,7 +3555,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
   \****************************/
 /***/ (() => {
 
-eval("const openModal = document.getElementById(\"openModal\");\r\nconst modal = document.getElementById(\"modal\");\r\nconst exitBtn = document.getElementById(\"jsExitBtn\");\r\nconst body = document.querySelector(\"body\");\r\n\r\nconst openModalWindow = () => {\r\n  console.log(\"1\");\r\n  modal.classList.remove(\"hidden\");\r\n  body.classList.add(\"scrollDisable\");\r\n};\r\n\r\nconst exitModal = () => {\r\n  modal.classList.add(\"hidden\");\r\n  body.classList.remove(\"scrollDisable\");\r\n};\r\n\r\nconst init = () => {\r\n  openModal.addEventListener(\"click\", openModalWindow);\r\n  exitBtn.addEventListener(\"click\", exitModal);\r\n};\r\n\r\ninit();\r\n\n\n//# sourceURL=webpack:///./assets/js/modal.js?");
+eval("const openModal = document.getElementById(\"openModal\");\r\nconst modal = document.getElementById(\"modal\");\r\nconst exitBtn = document.getElementById(\"jsExitBtn\");\r\nconst body = document.querySelector(\"body\");\r\n\r\nconst openModalWindow = () => {\r\n  console.log(\"1\");\r\n  modal.classList.remove(\"hidden\");\r\n  body.classList.add(\"scrollDisable\");\r\n};\r\n\r\nconst exitModal = () => {\r\n  modal.classList.add(\"hidden\");\r\n  body.classList.remove(\"scrollDisable\");\r\n};\r\n\r\nconst init = () => {\r\n  openModal.addEventListener(\"click\", openModalWindow);\r\n  exitBtn.addEventListener(\"click\", exitModal);\r\n};\r\n\r\nif (openModal) {\r\n  init();\r\n}\r\n\n\n//# sourceURL=webpack:///./assets/js/modal.js?");
 
 /***/ }),
 
