@@ -25,8 +25,8 @@ import routes from "../routes";
 const globalRouter = express.Router();
 
 globalRouter.get(routes.home, home);
-globalRouter.get(routes.liked, homeLiked);
-globalRouter.get(routes.subscribed, homeSubscribed);
+globalRouter.get(routes.liked, onlyPrivate, homeLiked);
+globalRouter.get(routes.subscribed, onlyPrivate, homeSubscribed);
 globalRouter.get(routes.hot, homeHot);
 
 globalRouter.get(routes.join, onlyPublic, getJoin);
