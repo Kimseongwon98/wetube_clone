@@ -40,7 +40,7 @@ export const homeLiked = async (req, res) => {
   try {
     const dbVideos = [];
     let i = 0;
-    const me = await User.findById(user).populate("subscribing");
+    const me = await User.findById(user);
     if (me.like.length === 0) {
       res.render("homeLiked", { pageTitle: "Home", dbVideos: [], me });
       return;
