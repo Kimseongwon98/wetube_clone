@@ -114,7 +114,7 @@ function handleScreenChange() {
 
 const formatDate = (seconds) => {
   const secondsNumber = parseInt(seconds, 10);
-  let hours = Math.floor(secondsNumber / 3600);
+  const hours = Math.floor(secondsNumber / 3600);
   let minutes = Math.floor((secondsNumber - hours * 3600) / 60);
   let totalSeconds = secondsNumber - hours * 3600 - minutes * 60;
 
@@ -135,7 +135,16 @@ function getCurrentTime() {
 }
 
 async function setTotalTime() {
-  const totalTimeString = formatDate(videoPlayer.duration);
+  let duration;
+  if (!Number.isFinite(videoPlayer.duration)) {
+    const blob = await fetch(videoPlayer.src).then((response) =>
+      response.blob()
+    );
+    duration = await getBlobDuration(blob);
+  } else {
+    duration = videoPlayer.duration;
+  }
+  const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
 }
 
@@ -213,12 +222,12 @@ const offComment = () => {
 
 function init() {
   videoPlayer.volume = 0.5;
+  videoPlayer.onload = setTotalTime();
+  videoPlayer.onload = getRange();
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScreenBtn.addEventListener("click", goFullScreen);
-  videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("timeupdate", getCurrentTime);
-  videoPlayer.addEventListener("loadedmetadata", getRange);
   videoPlayer.addEventListener("ended", handleEnded);
   videoPlayer.addEventListener("click", handlePlayClick);
   rangeBar.addEventListener("input", handlePlayDrag);
