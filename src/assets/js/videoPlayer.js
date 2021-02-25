@@ -136,7 +136,7 @@ function getCurrentTime() {
 
 async function setTotalTime() {
   let duration;
-  if (!isFinite(videoPlayer.duration)) {
+  if (!Number.isFinite(videoPlayer.duration)) {
     const blob = await fetch(videoPlayer.src).then((response) =>
       response.blob()
     );
