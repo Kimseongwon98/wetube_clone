@@ -135,19 +135,17 @@ function getCurrentTime() {
 }
 
 async function setTotalTime() {
-  if (videoPlayer.duration) {
-    const totalTimeString = formatDate(videoPlayer.duration);
-    console.log(totalTimeString);
-    totalTime.innerHTML = totalTimeString;
-  } else {
+  let duration;
+  if (!isFinite(videoPlayer.duration)) {
     const blob = await fetch(videoPlayer.src).then((response) =>
       response.blob()
     );
-    const duration = await getBlobDuration(blob);
-    const totalTimeString = formatDate(duration);
-    console.log(totalTimeString);
-    totalTime.innerHTML = totalTimeString;
+    duration = await getBlobDuration(blob);
+  } else {
+    duration = videoPlayer.duration;
   }
+  const totalTimeString = formatDate(duration);
+  totalTime.innerHTML = totalTimeString;
 }
 
 function handleEnded() {
