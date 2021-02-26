@@ -20,7 +20,8 @@ block content
                         i.fas.fa-id-card-alt
                         span 구독
                 .mySubscribe 
-                    span 구독중인 채널
+                    span 구독중인 채널 
+                    span=me.subscribing.length
                     if loggedUser
                         each channel in me.subscribing
                             a(href=`/users/${channel.id}`)
