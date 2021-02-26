@@ -50,7 +50,11 @@ export const homeLiked = async (req, res) => {
       dbVideos.push(video);
       i += 1;
       if (me.like.length === i) {
-        res.render("homeLiked", { pageTitle: "Home", dbVideos, me });
+        res.render("homeLiked", {
+          pageTitle: "Home",
+          dbVideos: dbVideos.slice(0, 9),
+          me,
+        });
       }
     });
   } catch (error) {

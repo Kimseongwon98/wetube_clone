@@ -136,6 +136,10 @@ function getCurrentTime() {
   rangeBar.value = videoPlayer.currentTime;
 }
 
+function getRange(duration) {
+  rangeBar.setAttribute("max", duration);
+}
+
 async function setTotalTime() {
   let duration;
   if (!Number.isFinite(videoPlayer.duration)) {
@@ -156,10 +160,6 @@ function handleEnded() {
   videoPlayer.currentTime = 0;
   handleMouse();
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
-}
-
-function getRange(duration) {
-  rangeBar.setAttribute("max", duration);
 }
 
 function handleVolumeDrag(event) {
