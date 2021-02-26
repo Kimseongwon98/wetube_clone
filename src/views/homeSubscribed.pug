@@ -30,12 +30,13 @@ block content
         .homeVideoWrapper
             .home-contents    
                 .home-videos
-                    each video in dbVideos
-                        +videoBlock({
-                            id: video.id,
-                            title:video.title,
-                            views:video.views,
-                            videoFile:video.fileUrl,
-                            thumbnail:video.thumbnailUrl
-                        })
+                    each channel in dbVideos
+                        each video in channel.videos
+                            +videoBlock({
+                                id: video.id,
+                                title:video.title,
+                                views:video.views,
+                                videoFile:video.fileUrl,
+                                thumbnail:video.thumbnailUrl
+                            })
             

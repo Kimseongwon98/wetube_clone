@@ -73,7 +73,7 @@ export const homeSubscribed = async (req, res) => {
       },
     ]);
     const dbVideos = me.subscribing;
-
+    console.log(dbVideos);
     res.render("homeSubscribed", { pageTitle: "Home", dbVideos, me });
   } catch (error) {
     console.log(error);
