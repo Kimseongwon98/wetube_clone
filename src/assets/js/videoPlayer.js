@@ -146,6 +146,7 @@ async function setTotalTime() {
   } else {
     duration = videoPlayer.duration;
   }
+  getRange(duration);
   const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
 }
@@ -157,8 +158,8 @@ function handleEnded() {
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
 
-function getRange() {
-  rangeBar.setAttribute("max", videoPlayer.duration);
+function getRange(duration) {
+  rangeBar.setAttribute("max", duration);
 }
 
 function handleVolumeDrag(event) {
@@ -225,7 +226,6 @@ const offComment = () => {
 function init() {
   videoPlayer.volume = 0.5;
   setTotalTime();
-  getRange();
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
