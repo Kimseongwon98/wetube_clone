@@ -2,15 +2,27 @@
 
 Cloning Youtube with Vanilla and NodeJS
 
-## Pages:
-
-- [ ] Home
-- [x] Join
-- [x] Login
-- [x] Search
-- [x] User Detail
-- [x] Edit Profile
-- [x] Change Password
-- [x] Upload
-- [x] Video Detail
-- [x] Edit Video
+## Home
+  + **홈**
+  ```
+  가장 기본 홈 화면
+  모든 영상을 최신순으로 노출
+  ```
+  + **인기 동영상**
+  ```
+  조회수 기준으로 정렬하여 최대 9개까지의 영상을 노출
+  ```
+  + **좋아요 표시한 동영상**
+  ```
+  (로그인 한 유저에게만 표시)
+  자신이 좋아요한 영상만 모아서 노출
+  ```
+  + **구독**
+  ```
+  (로그인 한 유저에게만 표시)
+  자신이 구독하고 있는 채널의 영상만 노출
+  ```
+  
+## 계정
+```
+기본 이메일 계정과 깃허브, 카카오를 통한 소셜 로그인.
