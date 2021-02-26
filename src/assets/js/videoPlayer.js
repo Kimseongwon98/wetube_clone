@@ -86,6 +86,7 @@ function exitFullScreen() {
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
   }
+  videoPlayer.classList.remove("full");
 }
 
 function goFullScreen() {
@@ -98,6 +99,7 @@ function goFullScreen() {
   } else if (videoContainer.msRequestFullscreen) {
     videoContainer.msRequestFullscreen();
   }
+  videoPlayer.classList.add("full");
 }
 
 function handleScreenChange() {
@@ -222,8 +224,9 @@ const offComment = () => {
 
 function init() {
   videoPlayer.volume = 0.5;
-  videoPlayer.onload = setTotalTime();
-  videoPlayer.onload = getRange();
+  setTotalTime();
+  getRange();
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScreenBtn.addEventListener("click", goFullScreen);
@@ -240,5 +243,5 @@ function init() {
 }
 
 if (videoContainer) {
-  init();
+  videoPlayer.onload = init();
 }
