@@ -28,4 +28,4 @@ Cloning Youtube with Vanilla and NodeJS
 기본 이메일 계정과 깃허브, 카카오를 통한 소셜 로그인.
 ```
 
-#작성중
+# 작성중
