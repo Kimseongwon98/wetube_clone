@@ -25,9 +25,16 @@ export const homeHot = async (req, res) => {
     const dbVideos = await Video.find({}).sort({ views: -1 });
     if (user) {
       const me = await User.findById(user).populate("subscribing");
-      res.render("homeHot", { pageTitle: "Home", dbVideos, me });
+      res.render("homeHot", {
+        pageTitle: "Home",
+        dbVideos: dbVideos.slice(0, 9),
+        me,
+      });
     } else {
-      res.render("homeHot", { pageTitle: "Home", dbVideos });
+      res.render("homeHot", {
+        pageTitle: "Home",
+        dbVideos: dbVideos.slice(0, 9),
+      });
     }
   } catch (error) {
     console.log(error);
@@ -47,12 +54,14 @@ export const homeLiked = async (req, res) => {
     }
     me.like.forEach(async (channel) => {
       const video = await Video.findById(channel);
-      dbVideos.push(video);
+      if (video) {
+        dbVideos.push(video);
+      }
       i += 1;
       if (me.like.length === i) {
         res.render("homeLiked", {
           pageTitle: "Home",
-          dbVideos: dbVideos.slice(0, 9),
+          dbVideos,
           me,
         });
       }
