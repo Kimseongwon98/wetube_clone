@@ -27,10 +27,10 @@ block content
                                 .mySubscribe__column
                                     image.mySubscribe__avatar(src=channel.avatarUrl)
                                     span=channel.name
-        .home-contents    
-            .home-videos
-                each channel in dbVideos
-                    each video in channel.videos
+        .homeVideoWrapper
+            .home-contents    
+                .home-videos
+                    each video in dbVideos
                         +videoBlock({
                             id: video.id,
                             title:video.title,

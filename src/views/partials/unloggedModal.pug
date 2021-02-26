@@ -1,0 +1,12 @@
+.modal.hidden#unloggedModal
+    .modal__overlay
+    .modal__content.unlogged-modal__content 
+        .modal__header 
+            i.fas.fa-times#jsExitBtnUnlogged 
+        .modal__main
+            a(href=routes.login)
+                .modal__column 
+                    i.fas.fa-sign-in-alt
+                    strong.modal__column-title 로그인이 필요한 기능입니다
+                    button Go To Login
+            

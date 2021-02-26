@@ -1,5 +1,6 @@
 const likeBtn = document.getElementById("jsLike");
 const unlikeBtn = document.getElementById("jsUnlike");
+const unlogged = document.getElementById("jsLikeContainerUnlogged");
 const btnContainer = document.getElementById("jsLikeContainer");
 const count = document.getElementById("jsLikeCount");
 
@@ -41,4 +42,6 @@ const init = () => {
   }
 };
 
-init();
+if (btnContainer) {
+  init();
+}

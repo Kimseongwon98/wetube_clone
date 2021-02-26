@@ -30,11 +30,15 @@ block content
                                 a(href=routes.editVideo(video.id))
                                     button Edit video
                 .like
-                    span#jsLikeContainer 
-                        if loggedUser && loggedUser.like.includes(video.id)
-                            i.fas.fa-thumbs-up#jsUnlike
-                        else
-                            i.far.fa-thumbs-up#jsLike
+                    if !loggedUser
+                        span#jsLikeContainerUnlogged
+                            i.far.fa-thumbs-up
+                    else
+                        span#jsLikeContainer 
+                            if loggedUser.like.includes(video.id)
+                                i.fas.fa-thumbs-up#jsUnlike
+                            else
+                                i.far.fa-thumbs-up#jsLike
         
                     span#jsLikeCount #{video.like}
             if video.tags
@@ -72,4 +76,5 @@ block content
             
             if loggedUser 
                 span.username#jsUserName=loggedUser.name
+    include ./partials/unloggedModal.pug
             
